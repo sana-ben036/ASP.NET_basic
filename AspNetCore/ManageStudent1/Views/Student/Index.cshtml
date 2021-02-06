@@ -1,0 +1,45 @@
+﻿@using ManageStudent1.Models;
+
+@model Student
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Student page | Index </title>
+</head>
+<body>
+    <p> Student List </p>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Cin</td>
+                <td>IsActive</td>
+                <td>Prenom</td>
+                <td>Nom</td>
+                <td>Adresse</td>
+                <td>Filiére</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (Student item in Model)
+                {
+                    <tr>
+                        <td>@Model.CIN</td>
+                        <td>@Model.IsActive</td>
+                        <td>@Model.Prenom</td>
+                        <td>@Model.Nom</td>
+                        <td>@Model.Adresse</td>
+                        <td>@Model.Filiere_Id</td>
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+    </table>
+</body>
+
+
+</html>
