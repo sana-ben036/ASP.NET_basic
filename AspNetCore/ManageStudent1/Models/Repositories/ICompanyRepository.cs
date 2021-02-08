@@ -10,8 +10,8 @@ namespace ManageStudent1.Models.Repositories
     {
 
 
-        TEntity GetStudent(string cin);
-        List<TEntity> GetAll();
+        List<TEntity>  Get();
+        void Add(TEntity entity);
 
 
     }

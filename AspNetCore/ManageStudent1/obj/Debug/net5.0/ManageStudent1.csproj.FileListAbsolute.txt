@@ -31,10 +31,11 @@ C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\ManageStudent1.RazorCoreGenerate.cache
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\ManageStudent1.RazorTargetAssemblyInfo.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\ManageStudent1.Views.pdb
-C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\Index.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\System.Data.SqlClient.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\List.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\AddStudent.cshtml.g.cs

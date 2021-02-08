@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace ManageStudent1.Models.Repositories
 {
@@ -20,12 +21,8 @@ namespace ManageStudent1.Models.Repositories
             //StudentList.Add(new Student() { CIN =2, IsActive = true, Prenom = "swino", Nom = "beng", Adresse = "Safi", Filiere_Id = 2 });
            
         }
-        public Student GetStudent(string cin)
-        {
-            return StudentList.Find(x => x.CIN == cin);
-        }
 
-        public List<Student> GetAll()
+        public List<Student> Get()
         {
             StudentList = new List<Student>();
             using (SqlConnection con = new SqlConnection())
@@ -35,7 +32,7 @@ namespace ManageStudent1.Models.Repositories
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = con;
-                    cmd.CommandText = "select * from Student";
+                    cmd.CommandText = "SELECT CIN,IsActive,Prenom,Nom,Adresse,Titre as Filiere FROM Student INNER JOIN Filiere ON student.Filiere_Id = Filiere.Id;";
                     SqlDataReader rd = cmd.ExecuteReader();
                     while (rd.Read())
                     {
@@ -46,9 +43,9 @@ namespace ManageStudent1.Models.Repositories
                             Prenom = rd["Prenom"].ToString(),
                             Nom = rd["Nom"].ToString(),
                             Adresse = rd["Adresse"].ToString(),
-                            Filiere_Id = Convert.ToInt32(rd["Filiére"])
+                            Filiere = rd["Filiere"].ToString()
 
-                        });
+                        }) ;
                     }
                 }
                 con.Close();
@@ -56,5 +53,35 @@ namespace ManageStudent1.Models.Repositories
 
             return StudentList;
         }
+
+        public void Add(Student Model) {
+
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = _Configuration.GetConnectionString("CnxSqlServer");
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = "INSERT INTO Student (CIN,Prenom,Nom,Adresse,Filiere_Id,IsActive) VALUES (@CIN,@Prenom,@Nom,@Adresse,@Filiere,@IsActive)";
+                    cmd.Parameters.AddWithValue("@CIN", Model.CIN);
+                    cmd.Parameters.AddWithValue("@Prenom", Model.Prenom);
+                    cmd.Parameters.AddWithValue("@Nom", Model.Nom);
+                    cmd.Parameters.AddWithValue("@Adresse", Model.Adresse);
+                    cmd.Parameters.AddWithValue("@Filiere", Model.Filiere);
+                    cmd.Parameters.AddWithValue("@IsActive", Model.IsActive);
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+
+
+        }
+
+        
     }
 }

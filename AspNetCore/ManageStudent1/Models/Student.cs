@@ -14,27 +14,7 @@ namespace ManageStudent1.Models
         public string Prenom { get; set; }
         public string Nom { get; set; }
         public string Adresse { get; set; }
-        public int Filiere_Id { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public string Filiere { get; set; } //  public Filiere Filiere { get; set; } object
 
 
 

@@ -1,0 +1,76 @@
+﻿@using ManageStudent1.Models;
+@model Student
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Student page | List </title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav style="width:60% ; margin:auto" class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">ManageStudent</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/student/List">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/student/AddStudent">Add Student</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+    </header>
+    <section style="width:60% ; margin:auto; padding:5px">
+        <p> Add New Student </p>
+        <form style="width:50%" asp-action="AddStudent" asp-controller="Student" method="post">
+            <div class="form-group">
+                <label for="cin">CIN</label>
+                <input type="text" class="form-control" id="cin" value="@Model.CIN">
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom</label>
+                <input type="text" class="form-control" id="prenom" value="@Model.Prenom">
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" class="form-control" id="nom" value="@Model.Nom">
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse</label>
+                <input type="text" class="form-control" id="adresse" value="@Model.Adresse">
+            </div>
+            <label for="filiere">Filiére</label>
+            <select class="form-control custom-select" id="filiere" value="@Model.Filiere">
+                <option>4</option>
+                <option>5</option>
+
+
+            </select>
+            
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="active" checked value="1">
+                <label class="form-check-label" for="active">IsActive</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </section>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

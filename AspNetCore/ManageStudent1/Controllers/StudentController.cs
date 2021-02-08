@@ -22,18 +22,27 @@ namespace ManageStudent1.Controllers
 
         public ViewResult List()
         {
-            List<Student> Students = _companyRepository.GetAll();
+            List<Student> Students = _companyRepository.Get();
             
+
+            return View(Students);
+
+        }
+
+        [HttpGet]
+        public ViewResult AddStudent()
+        {
 
             return View();
 
         }
-
-        public ViewResult Add()
+        [HttpPost]
+        public ViewResult AddStudent(Student student)
         {
 
+            _companyRepository.Add(student);
 
-            return View();
+            return View("List");
 
         }
 

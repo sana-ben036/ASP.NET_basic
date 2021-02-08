@@ -19,7 +19,7 @@ namespace ManageStudent1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
-            services.AddSingleton<ICompanyRepository<Student>, StudentRepository>();
+            services.AddTransient<ICompanyRepository<Student>, StudentRepository>(); // changemement addSingleton to  addTransient
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +34,7 @@ namespace ManageStudent1
             app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {   
-                routes.MapRoute("default", "{controller=Student}/{action=Index}"); });
+                routes.MapRoute("default", "{controller=Student}/{action=List}"); });
 
             app.UseRouting();
 
