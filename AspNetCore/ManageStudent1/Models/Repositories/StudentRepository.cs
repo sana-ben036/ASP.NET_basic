@@ -19,8 +19,8 @@ namespace ManageStudent1.Models.Repositories
             _Configuration = configuration;
 
             Students = new List<Student>();
-            Students.Add(new Student() { CIN = 1, IsActive = true, Prenom = "sana", Nom = "ben", Adresse = "Youssoufia", Filiere = "Csharp" });
-            Students.Add(new Student() { CIN = 2, IsActive = true, Prenom = "swino", Nom = "beng", Adresse = "Safi", Filiere = "J2EE" });
+            Students.Add(new Student() { CIN = "ha123", IsActive = true, Prenom = "sana", Nom = "ben", Adresse = "Youssoufia", Filiere = "Csharp" });
+            Students.Add(new Student() { CIN = "ha456", IsActive = false, Prenom = "swino", Nom = "beng", Adresse = "Safi", Filiere = "J2EE" });
         }
 
         public IEnumerable<Student> GetList()
@@ -29,7 +29,7 @@ namespace ManageStudent1.Models.Repositories
             return Students;
         }
 
-        public Student Get(int cin)
+        public Student Get(string cin)
         {
             return Students.SingleOrDefault(s => s.CIN == cin);
         }
@@ -38,7 +38,7 @@ namespace ManageStudent1.Models.Repositories
             Students.Add(student);
         }
 
-        public Student Delete(int cin)
+        public Student Delete(string cin)
         {
             var student = Students.Find(s => s.CIN == cin);
             if (student != null)

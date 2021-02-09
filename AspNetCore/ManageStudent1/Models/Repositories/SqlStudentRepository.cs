@@ -21,7 +21,7 @@ namespace ManageStudent1.Models.Repositories
             //return entity if add return student
         }
 
-        public Student Delete(int cin)
+        public Student Delete(string cin)
         {
             var student = Get(cin);
             if(student != null)
@@ -32,7 +32,7 @@ namespace ManageStudent1.Models.Repositories
             return student;
         }
 
-        public Student Get(int cin)
+        public Student Get(string cin)
         {
             var student = this.context.Students.SingleOrDefault(s => s.CIN == cin);
             return student;

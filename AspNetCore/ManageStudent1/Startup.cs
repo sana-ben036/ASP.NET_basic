@@ -23,7 +23,7 @@ namespace ManageStudent1
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("StudentDbConnect"))); // connectiondb
             services.AddMvc(options => options.EnableEndpointRouting = false); // for accept ouwn routing
-            services.AddScoped<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton 
+            services.AddSingleton<ICompanyRepository<Student>, StudentRepository>(); // changemement addSingleton 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,19 +37,20 @@ namespace ManageStudent1
 
             app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
-            {   
-                routes.MapRoute("default", "{controller=Student}/{action=List}/{cin?}"); });
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                   
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                routes.MapRoute("default", "{controller=Student}/{action=List}/{id ?}");
             });
+
+            //app.UseRouting();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+                   
+            //        await context.Response.WriteAsync("Hello World!");
+            //    });
+            //});
         }
     }
 }

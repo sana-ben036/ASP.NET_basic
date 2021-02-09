@@ -1,0 +1,35 @@
+﻿@model Student
+
+@{
+    ViewBag.Title = "ManageStudent | Search";
+}
+
+<p class="alert alert-info my-4 text-center"> Student Info </p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Cin</th>
+            <th scope="col">IsActive</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Filiére</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.CIN</td>
+            <td>@Model.IsActive</td>
+            <td>@Model.Prenom</td>
+            <td>@Model.Nom</td>
+            <td>@Model.Adresse</td>
+            <td>@Model.Filiere</td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateStudent", new { cin = Model.CIN }) |
+                @Html.ActionLink("Delete", "DeleteStudent", new { cin = Model.CIN })
+            </td>
+        </tr>
+
+    </tbody>
+</table>

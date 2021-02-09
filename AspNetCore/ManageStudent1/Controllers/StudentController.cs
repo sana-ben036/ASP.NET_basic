@@ -20,9 +20,9 @@ namespace ManageStudent1.Controllers
            
         }
 
-        public ActionResult StudentInfo()
+        public ActionResult Search(string id)
         {
-            Student student = _companyRepository.Get(2);
+            Student student = _companyRepository.Get(id);
 
 
             return View(student);

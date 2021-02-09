@@ -11,9 +11,9 @@ namespace ManageStudent1.Models.Repositories
 
 
         IEnumerable<TEntity>  GetList();
-        TEntity Get(int cin);
+        TEntity Get(string cin);
         void Add(TEntity entity);
-        TEntity Delete(int cin);
+        TEntity Delete(string cin);
         TEntity Update(TEntity entityChanges);
 
 
