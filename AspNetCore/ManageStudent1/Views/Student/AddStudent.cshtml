@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="~/student/List">Home</a>
+                        <a class="nav-link" href="~/student/List">Students</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/student/AddStudent">Add Student</a>
@@ -34,25 +34,25 @@
     </header>
     <section style="width:60% ; margin:auto; padding:5px">
         <p> Add New Student </p>
-        <form style="width:50%" asp-action="AddStudent" asp-controller="Student" method="post">
+        <form style="width:50%" action="AddStudent" controller="Student" method="post">
             <div class="form-group">
                 <label for="cin">CIN</label>
-                <input type="text" class="form-control" id="cin" value="@Model.CIN">
+                <input type="text" class="form-control" id="cin" value="">
             </div>
             <div class="form-group">
                 <label for="prenom">Prenom</label>
-                <input type="text" class="form-control" id="prenom" value="@Model.Prenom">
+                <input type="text" class="form-control" id="prenom" value="">
             </div>
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" id="nom" value="@Model.Nom">
+                <input type="text" class="form-control" id="nom" value="">
             </div>
             <div class="form-group">
                 <label for="adresse">Adresse</label>
-                <input type="text" class="form-control" id="adresse" value="@Model.Adresse">
+                <input type="text" class="form-control" id="adresse" value="">
             </div>
             <label for="filiere">Filiére</label>
-            <select class="form-control custom-select" id="filiere" value="@Model.Filiere">
+            <select class="form-control custom-select" id="filiere" value="">
                 <option>4</option>
                 <option>5</option>
 

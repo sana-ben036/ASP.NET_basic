@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="~/student/List">Home</a>
+                        <a class="nav-link" href="~/student/List">Students</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/student/AddStudent">Add Student</a>
@@ -60,7 +60,7 @@
                             <td>@item.Adresse</td>
                             <td>@item.Filiere</td>
                             <td>
-                                @Html.ActionLink("Edit", "EditStudent", new { cin = item.CIN }) |
+                                @Html.ActionLink("Edit", "UpdateStudent", new { cin = item.CIN }) |
                                 @Html.ActionLink("Delete", "DeleteStudent", new { cin = item.CIN })
                             </td>
                         </tr>

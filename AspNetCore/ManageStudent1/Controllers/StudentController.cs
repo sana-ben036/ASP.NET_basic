@@ -20,9 +20,18 @@ namespace ManageStudent1.Controllers
            
         }
 
-        public ViewResult List()
+        public ActionResult StudentInfo()
         {
-            List<Student> Students = _companyRepository.Get();
+            Student student = _companyRepository.Get(2);
+
+
+            return View(student);
+
+        }
+
+        public ActionResult List()
+        {
+            IEnumerable<Student> Students = _companyRepository.GetList();
             
 
             return View(Students);
@@ -30,35 +39,35 @@ namespace ManageStudent1.Controllers
         }
 
         [HttpGet]
-        public ViewResult AddStudent()
+        public ActionResult AddStudent()
         {
 
             return View();
 
         }
         [HttpPost]
-        public ViewResult AddStudent(Student student)
+        public ActionResult AddStudent(Student student)
         {
 
             _companyRepository.Add(student);
 
-            return View("List");
+            return RedirectToAction("List");
 
         }
 
-        public ViewResult Edit()
+        public ActionResult EditStudent()
         {
 
 
-            return View();
+            return RedirectToAction("List");
 
         }
 
-        public ViewResult Delete()
+        public ActionResult DeleteStudent()
         {
 
 
-            return View();
+            return RedirectToAction("List");
 
         }
 
