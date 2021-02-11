@@ -20,18 +20,18 @@
     </thead>
     <tbody>
         @{
-            foreach (Student item in Model)
+            foreach (Student student in Model)
             {
                 <tr>
-                    <td>@item.CIN</td>
-                    <td>@item.IsActive</td>
-                    <td>@item.Prenom</td>
-                    <td>@item.Nom</td>
-                    <td>@item.Adresse</td>
-                    <td>@item.Filiere</td>
+                    <td>@student.CIN</td>
+                    <td>@student.IsActive</td>
+                    <td>@student.Prenom</td>
+                    <td>@student.Nom</td>
+                    <td>@student.Adresse</td>
+                    <td>@student.Filiere</td>
                     <td>
-                        @Html.ActionLink("Edit", "UpdateStudent", new { cin = item.CIN }) |
-                        @Html.ActionLink("Delete", "DeleteStudent", new { cin = item.CIN })
+                        <a asp-action="Edit" asp-controller="Student" asp-route-id="@student.CIN">Edit</a> |
+                        <a asp-action="Delete" asp-controller="Student" asp-route-id="@student.CIN">Delete</a>
                     </td>
                 </tr>
 

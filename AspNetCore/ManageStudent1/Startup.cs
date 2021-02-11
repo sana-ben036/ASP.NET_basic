@@ -12,7 +12,7 @@ namespace ManageStudent1
 {
     public class Startup
     {
-        IConfiguration _configuration;
+        readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
             this._configuration = configuration;
@@ -23,7 +23,7 @@ namespace ManageStudent1
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("StudentDbConnect"))); // connectiondb
             services.AddMvc(options => options.EnableEndpointRouting = false); // for accept ouwn routing
-            services.AddSingleton<ICompanyRepository<Student>, StudentRepository>(); // changemement addSingleton 
+            services.AddTransient<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

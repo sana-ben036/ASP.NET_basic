@@ -11,8 +11,10 @@ namespace ManageStudent1.Controllers
 {
     public class StudentController : Controller
     {
-        
-        private ICompanyRepository<Student> _companyRepository;
+        Student student;
+
+
+        private readonly ICompanyRepository<Student> _companyRepository;
 
         public StudentController(ICompanyRepository<Student> companyRepository)
         {
@@ -48,10 +50,23 @@ namespace ManageStudent1.Controllers
         [HttpPost]
         public ActionResult AddStudent(Student student)
         {
+            if (ModelState.IsValid)
+            {
+                student = new Student()
+                {
+                    CIN = student.CIN,
+                    IsActive = student.IsActive,
+                    Prenom = student.Prenom,
+                    Nom = student.Nom,
+                    Adresse = student.Adresse,
+                    Filiere = student.Filiere
 
-            _companyRepository.Add(student);
+                };
+                _companyRepository.Add(student);
 
-            return RedirectToAction("List");
+                return RedirectToAction("Search", new { id = student.CIN });
+            }
+            return View();
 
         }
 

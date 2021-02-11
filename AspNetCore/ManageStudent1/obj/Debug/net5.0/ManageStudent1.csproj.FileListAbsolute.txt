@@ -74,3 +74,5 @@ C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\Search.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\libman.json
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Humanizer.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

@@ -12,15 +12,17 @@ namespace ManageStudent1.Models.Repositories
     public class StudentRepository : ICompanyRepository<Student>
     {
         public List<Student> Students;
-        public IConfiguration _Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         public StudentRepository(IConfiguration configuration)
         {
-            _Configuration = configuration;
+            Configuration = configuration;
 
-            Students = new List<Student>();
-            Students.Add(new Student() { CIN = "ha123", IsActive = true, Prenom = "sana", Nom = "ben", Adresse = "Youssoufia", Filiere = "Csharp" });
-            Students.Add(new Student() { CIN = "ha456", IsActive = false, Prenom = "swino", Nom = "beng", Adresse = "Safi", Filiere = "J2EE" });
+            Students = new List<Student>
+            {
+                new Student() { CIN = "ha123", IsActive = true, Prenom = "sana", Nom = "ben", Adresse = "Youssoufia", Filiere = Filiere.CSharp },
+                new Student() { CIN = "ha456", IsActive = false, Prenom = "swino", Nom = "beng", Adresse = "Safi", Filiere = Filiere.J2EE }
+            };
         }
 
         public IEnumerable<Student> GetList()
