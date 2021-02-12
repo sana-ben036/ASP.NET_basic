@@ -1,27 +1,15 @@
 ﻿@model Student
 
 @{
-    
-    ViewBag.Title = "ManageStudent  | Add";
-    
+
+    ViewBag.Title = "ManageStudent  | Edit";
 }
 
 
-<p class="alert alert-info my-4 text-center"> Add New Student </p>
+<p class="alert alert-info my-4 text-center"> Edit Info Student </p>
 
-<form  class="mx-lg-auto w-50" asp-action="AddStudent" asp-controller="Student" method="post">
-    <div class="form-group">
-        <label asp-for="CIN"></label>
-        <input type="text" class="form-control" asp-for="CIN">
-        <span asp-validation-for="CIN" class="small text-danger"></span>
-        @{
-            if (ViewBag.Pk != null)
-            {
-                <p class="small text-danger">@ViewBag.Pk</p>
-            }
-            
-        }
-    </div>
+<form class="mx-lg-auto w-50" asp-action="EditStudent" asp-controller="Student" method="post">
+    <input hidden asp-for="CIN">
     <div class="form-group">
         <label asp-for="Prenom"></label>
         <input type="text" class="form-control" asp-for="Prenom">
@@ -46,8 +34,8 @@
         <span asp-validation-for="Filiere" class="small text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="checkbox" class="form-check-input" asp-for="IsActive" >
+        <input type="checkbox" class="form-check-input" asp-for="IsActive">
         <label class="form-check-label" asp-for="IsActive"></label>
     </div>
-    <button type="submit" class="btn btn-primary">Add Student</button>
+    <button type="submit" class="btn btn-primary">Edit Student</button>
 </form>

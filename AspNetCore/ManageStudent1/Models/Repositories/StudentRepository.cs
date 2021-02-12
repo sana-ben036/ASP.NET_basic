@@ -50,7 +50,7 @@ namespace ManageStudent1.Models.Repositories
             return student;
         }
 
-        public Student Update(Student entityChanges)
+        public Student Edit(Student entityChanges)
         {
             var student = Students.Find(s => s.CIN == entityChanges.CIN);
             if (student != null)

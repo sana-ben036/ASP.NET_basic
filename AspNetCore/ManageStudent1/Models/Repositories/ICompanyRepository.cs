@@ -14,7 +14,7 @@ namespace ManageStudent1.Models.Repositories
         TEntity Get(string cin);
         void Add(TEntity entity);
         TEntity Delete(string cin);
-        TEntity Update(TEntity entityChanges);
+        TEntity Edit(TEntity entityChanges);
 
 
     }

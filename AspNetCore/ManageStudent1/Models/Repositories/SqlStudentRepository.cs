@@ -16,8 +16,9 @@ namespace ManageStudent1.Models.Repositories
         }
         public void Add(Student entity)
         {
+           
             this.context.Students.Add(entity);
-            context.SaveChanges();
+            this.context.SaveChanges();
             //return entity if add return student
         }
 
@@ -27,11 +28,11 @@ namespace ManageStudent1.Models.Repositories
             if(student != null)
             {
                 this.context.Students.Remove(student);
-                context.SaveChanges();
+                this.context.SaveChanges();
             }
             return student;
         }
-
+        
         public Student Get(string cin)
         {
             var student = this.context.Students.SingleOrDefault(s => s.CIN == cin);
@@ -43,11 +44,11 @@ namespace ManageStudent1.Models.Repositories
             return this.context.Students;
         }
 
-        public Student Update(Student entityChanges)
+        public Student Edit(Student entityChanges)
         {
             var student = this.context.Students.Attach(entityChanges);
             student.State = EntityState.Modified;
-            context.SaveChanges();
+            this.context.SaveChanges();
             return entityChanges;
 
         }

@@ -26,8 +26,8 @@
             <td>@Model.Adresse</td>
             <td>@Model.Filiere</td>
             <td>
-                @Html.ActionLink("Edit", "UpdateStudent", new { cin = Model.CIN }) |
-                @Html.ActionLink("Delete", "DeleteStudent", new { cin = Model.CIN })
+                <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Edit</a> |
+                <a asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN">Delete</a>
             </td>
         </tr>
 

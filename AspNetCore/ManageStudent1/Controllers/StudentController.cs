@@ -11,8 +11,7 @@ namespace ManageStudent1.Controllers
 {
     public class StudentController : Controller
     {
-        Student student;
-
+        
 
         private readonly ICompanyRepository<Student> _companyRepository;
 
@@ -30,6 +29,7 @@ namespace ManageStudent1.Controllers
             return View(student);
 
         }
+        
 
         public ActionResult List()
         {
@@ -48,39 +48,78 @@ namespace ManageStudent1.Controllers
 
         }
         [HttpPost]
-        public ActionResult AddStudent(Student student)
+        public ActionResult AddStudent(Student model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && (Search(model.CIN) == null))
             {
-                student = new Student()
+                Student student = new Student()
                 {
-                    CIN = student.CIN,
-                    IsActive = student.IsActive,
-                    Prenom = student.Prenom,
-                    Nom = student.Nom,
-                    Adresse = student.Adresse,
-                    Filiere = student.Filiere
+                    CIN = model.CIN,
+                    IsActive = model.IsActive,
+                    Prenom = model.Prenom,
+                    Nom = model.Nom,
+                    Adresse = model.Adresse,
+                    Filiere = model.Filiere
 
                 };
+
                 _companyRepository.Add(student);
 
                 return RedirectToAction("Search", new { id = student.CIN });
+                
+
             }
-            return View();
+            ViewBag.Pk = "CIN est déja exist !!";
+            return View(model);
+
+        }
+        [HttpGet]
+        public ActionResult EditStudent(string id)
+        {
+            Student student = _companyRepository.Get(id);
+            Student model = new Student()
+            {
+                CIN = student.CIN,
+                IsActive = student.IsActive,
+                Prenom = student.Prenom,
+                Nom = student.Nom,
+                Adresse = student.Adresse,
+                Filiere = student.Filiere
+
+            };
+
+            return View(model);
+
+        }
+        [HttpPost]
+        public ActionResult EditStudent(Student model)
+        {
+            if (ModelState.IsValid)
+            {
+              Student student = _companyRepository.Get(model.CIN);
+
+                //student.CIN = model.CIN;
+                student.IsActive = model.IsActive;
+                student.Prenom = model.Prenom;
+                student.Nom = model.Nom;
+                student.Adresse = model.Adresse;
+                student.Filiere = model.Filiere;
+            
+                
+                _companyRepository.Edit(student);
+                return RedirectToAction("Search", new { id = student.CIN });
+
+
+            }
+            
+            return View(model);
 
         }
 
-        public ActionResult EditStudent()
+        public ActionResult DeleteStudent(string id)
         {
-
-
-            return RedirectToAction("List");
-
-        }
-
-        public ActionResult DeleteStudent()
-        {
-
+            Student student = _companyRepository.Get(id);
+            _companyRepository.Delete(student.CIN);
 
             return RedirectToAction("List");
 
