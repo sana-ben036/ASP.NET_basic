@@ -19,7 +19,7 @@ namespace ManageStudent1.Models.Repositories
            
             this.context.Students.Add(entity);
             this.context.SaveChanges();
-            //return entity if add return student
+            //return entity if  we want return student after add
         }
 
         public Student Delete(string cin)

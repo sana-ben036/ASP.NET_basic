@@ -17,13 +17,12 @@ namespace ManageStudent1
         {
             this._configuration = configuration;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("StudentDbConnect"))); // connectiondb
             services.AddMvc(options => options.EnableEndpointRouting = false); // for accept ouwn routing
-            services.AddTransient<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton 
+            services.AddTransient<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton & type Entity StudentRepository
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -50,7 +50,7 @@ namespace ManageStudent1.Controllers
         [HttpPost]
         public ActionResult AddStudent(Student model)
         {
-            if (ModelState.IsValid && (Search(model.CIN) == null))
+            if (ModelState.IsValid && (_companyRepository.Get(model.CIN) == null))
             {
                 Student student = new Student()
                 {
