@@ -17,7 +17,7 @@ namespace ManageStudent1.Models
         }
         public DbSet<Student> Students { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder) // si on veut initialiser la base de donnee et inserer des enregistrement 
         {
             modelBuilder.Seed();
         }

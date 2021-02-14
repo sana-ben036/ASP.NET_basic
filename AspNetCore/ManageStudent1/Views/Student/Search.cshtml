@@ -27,7 +27,7 @@
             <td>@Model.Filiere</td>
             <td>
                 <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Edit</a> |
-                <a asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN">Delete</a>
+                <a asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN" onclick="return confirm('Are you sure ??')">Delete</a>
             </td>
         </tr>
 
