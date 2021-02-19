@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -45,11 +47,43 @@
                         <a class="nav-link" asp-action="AddStudent" asp-controller="Student">Add Student</a>
                     </li>
 
+
                 </ul>
-                <form class="form-inline my-2 my-lg-0" asp-action="Search" asp-controller="Student"  method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Enter Cin"  aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <ul class="navbar-nav ml-auto">
+
+                    @if(signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item ">
+                            <form asp-action="Logout" asp-controller="Account"  method="post">
+                                <button type="submit" class="btn btn-outline-dark text-white">
+                                    Logout @User.Identity.Name
+                                </button>
+
+                            </form>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-action="Register" asp-controller="Account">Register</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                        </li>
+                    }
+
+
+
+                </ul>
+                <!--
+
+                        <form class="form-inline my-2 my-lg-0" asp-action="Search" asp-controller="Student" method="post">
+                 <input class="form-control mr-sm-2" type="search" placeholder="Enter Cin" aria-label="Search">
+                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                 </form>
+
+                         -->
 
             </div>
 
@@ -61,6 +95,9 @@
         @RenderBody()
 
     </section>
+    <footer class="bg-dark  mx-lg-auto text-light text-center">
+        <p>&copy; CopyRight</p>
+    </footer>
 
 
 

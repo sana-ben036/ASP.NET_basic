@@ -77,3 +77,12 @@ C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Humanizer.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\EditStudent.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Errors\NotFound.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Errors\NotFoundError.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs

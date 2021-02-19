@@ -1,14 +1,11 @@
 ﻿using ManageStudent1.Models;
 using ManageStudent1.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ManageStudent1.Controllers
 {
+
     public class StudentController : Controller
     {
         
@@ -20,17 +17,21 @@ namespace ManageStudent1.Controllers
             _companyRepository = companyRepository;
            
         }
-
         public ActionResult Search(string id)
         {
-            Student student = _companyRepository.Get(id);
-
+            if(id is null)
+            {
+                return RedirectToAction("List");
+            }
+            Student student = _companyRepository.Get(id );
+            if (student is null)
+            {
+                return View("NotFoundError", id);
+            }
 
             return View(student);
 
         }
-        
-
         public ActionResult List()
         {
             IEnumerable<Student> Students = _companyRepository.GetList();
@@ -39,7 +40,6 @@ namespace ManageStudent1.Controllers
             return View(Students);
 
         }
-
         [HttpGet]
         public ActionResult AddStudent()
         {
@@ -77,6 +77,10 @@ namespace ManageStudent1.Controllers
         public ActionResult EditStudent(string id)
         {
             Student student = _companyRepository.Get(id);
+            if (student is null)
+            {
+                return View("NotFoundError", id);
+            }
             Student model = new Student()
             {
                 CIN = student.CIN,

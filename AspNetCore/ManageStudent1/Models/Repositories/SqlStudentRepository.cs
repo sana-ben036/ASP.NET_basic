@@ -10,15 +10,15 @@ namespace ManageStudent1.Models.Repositories
     {
         private readonly AppDbContext context;
 
-        public SqlStudentRepository(AppDbContext context)
+        public SqlStudentRepository(AppDbContext _context)
         {
-            this.context = context;
+            context = _context;
         }
         public void Add(Student entity)
         {
            
-            this.context.Students.Add(entity);
-            this.context.SaveChanges();
+            context.Students.Add(entity);
+            context.SaveChanges();
             //return entity if  we want return student after add
         }
 
@@ -27,28 +27,28 @@ namespace ManageStudent1.Models.Repositories
             var student = Get(cin);
             if(student != null)
             {
-                this.context.Students.Remove(student);
-                this.context.SaveChanges();
+                context.Students.Remove(student);
+                context.SaveChanges();
             }
             return student;
         }
         
         public Student Get(string cin)
         {
-            var student = this.context.Students.SingleOrDefault(s => s.CIN == cin);
+            var student = context.Students.SingleOrDefault(s => s.CIN == cin);
             return student;
         }
 
         public IEnumerable<Student> GetList()
         {
-            return this.context.Students;
+            return context.Students;
         }
 
         public Student Edit(Student entityChanges)
         {
-            var student = this.context.Students.Attach(entityChanges);
+            var student = context.Students.Attach(entityChanges);
             student.State = EntityState.Modified;
-            this.context.SaveChanges();
+            context.SaveChanges();
             return entityChanges;
 
         }
