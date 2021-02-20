@@ -1,11 +1,12 @@
 ﻿using ManageStudent1.Models;
 using ManageStudent1.Models.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace ManageStudent1.Controllers
 {
-
+    [Authorize]
     public class StudentController : Controller
     {
         
@@ -17,6 +18,7 @@ namespace ManageStudent1.Controllers
             _companyRepository = companyRepository;
            
         }
+
         public ActionResult Search(string id)
         {
             if(id is null)
@@ -32,6 +34,16 @@ namespace ManageStudent1.Controllers
             return View(student);
 
         }
+
+        public ActionResult Index()
+        {
+            IEnumerable<Student> Students = _companyRepository.GetList();
+
+
+            return View(Students);
+        }
+
+        [AllowAnonymous]
         public ActionResult List()
         {
             IEnumerable<Student> Students = _companyRepository.GetList();
@@ -40,6 +52,7 @@ namespace ManageStudent1.Controllers
             return View(Students);
 
         }
+
         [HttpGet]
         public ActionResult AddStudent()
         {
@@ -47,6 +60,7 @@ namespace ManageStudent1.Controllers
             return View();
 
         }
+
         [HttpPost]
         public ActionResult AddStudent(Student model)
         {
@@ -73,6 +87,7 @@ namespace ManageStudent1.Controllers
             return View(model);
 
         }
+
         [HttpGet]
         public ActionResult EditStudent(string id)
         {
@@ -95,6 +110,8 @@ namespace ManageStudent1.Controllers
             return View(model);
 
         }
+
+        
         [HttpPost]
         public ActionResult EditStudent(Student model)
         {
@@ -119,6 +136,7 @@ namespace ManageStudent1.Controllers
             return View(model);
 
         }
+
 
         public ActionResult DeleteStudent(string id)
         {

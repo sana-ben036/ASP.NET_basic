@@ -8,12 +8,13 @@
     <environment include="Development">
         <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
         <script href="~/lib/bootstrap/js/bootstrap.js" rel="stylesheet"></script>
 
 
     </environment>
-    <environment include="Production,Staging">
-        @*on peut utiliser exclude="Development" cad utiliser ce lien en tt les cas sauf le cas de devlpmt*@
+    <environment exclude="Development">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
               rel="stylesheet"
               integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
@@ -23,6 +24,11 @@
               asp-fallback-test-property="position"
               asp-fallback-test-value="absolute"
               asp-suppress-fallback-integrity="true">
+
+
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 
     </environment>
@@ -95,7 +101,7 @@
         @RenderBody()
 
     </section>
-    <footer class="bg-dark  mx-lg-auto text-light text-center">
+    <footer class="bg-dark  mx-lg-auto text-light text-center position-absolute w-100 " style="bottom:0" >
         <p>&copy; CopyRight</p>
     </footer>
 

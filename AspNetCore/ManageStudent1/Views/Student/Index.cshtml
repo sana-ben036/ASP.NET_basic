@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Student>
+
+@{
+
+    ViewBag.Title = "ManageStudent  | Welcome";
+
+}
+
+
+<p class="alert alert-info my-4 text-center"> List of students </p>
+
+<div class="row">
+    @foreach (Student student in Model)
+    {
+        <div class="col-12 col-sm-6 mb-2 col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/images/z.jpg" alt="Student photo">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@student.Nom @student.Prenom</h5>
+                    <p class="card-text">@student.Filiere</p>
+                    <p class="card-text">@student.Adresse</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>

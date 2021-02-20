@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ManageStudent1.Tools;
 
 namespace ManageStudent1.Models
 {
@@ -18,6 +20,8 @@ namespace ManageStudent1.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [Remote(action: "CheckingExistingEmail", controller:"Account")]
+        [ValidEmailDomainAttribut(Domain: "gmail.com", ErrorMessage = "Email Domain must be gmail.com")]
         public string Email { get; set; }
 
         [Required]

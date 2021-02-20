@@ -8,7 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ManageStudent1
 {
@@ -31,7 +32,21 @@ namespace ManageStudent1
             }
                 
                 ).AddEntityFrameworkStores<AppDbContext>();
-            services.AddMvc(options => options.EnableEndpointRouting = false); // for accept ouwn routing
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;  // for accept ouwn routing
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+
+            });
+
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "464133127211-av4ifv26jeg03svq702oo9q7ljovn19q.apps.googleusercontent.com";
+                options.ClientSecret = "WWyew2jNIbE6Ju_fjHhYzjJc";
+
+            });
+
             services.AddTransient<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton StudentRepository
         }
 

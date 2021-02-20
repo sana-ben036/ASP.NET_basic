@@ -7,27 +7,60 @@
 }
 
 
-<p class="alert alert-info my-4 text-center"> User Login </p>
+<div class="row">
+    <div class="col-md-6">
+        <p class="alert alert-info my-4 text-center"> Local Account Login </p>
+        <hr />
+        <form class="mx-lg-auto w-50" method="post">
 
-<form class="mx-lg-auto w-50" asp-action="Login" asp-controller="Account" method="post">
-    
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input class="form-control" asp-for="Email">
-        <span asp-validation-for="Email" class="small text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input class="form-control" asp-for="Password">
-        <span asp-validation-for="Password"  class="small text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Remember"></label>
-        <input class="custom-checkbox" asp-for="Remember">
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Login</button>
-    </div>
-    <div class="text text-danger" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email">
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input class="form-control" asp-for="Password">
+                <span asp-validation-for="Password" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remember"></label>
+                <input class="custom-checkbox" asp-for="Remember">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="text text-danger" asp-validation-summary="All"></div>
 
-</form>
+        </form>
+
+    </div>
+    <div class="col-md-6">
+        <p class="alert alert-info my-4 text-center">External Login</p>
+        <hr />
+        @{ 
+            if(Model.ExternalLogins.Count == 0)
+            {
+                <div>No External Logins Configured</div>
+            }
+            else
+            {
+                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                    <div>
+                        @foreach(var provider in Model.ExternalLogins)
+                        {
+                            <button type="submit" class="btn btn-primary"
+                                    name="provider" value="@provider.Name"
+                                    title="Login using your @provider.DisplayName account">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </div>
+
+                </form>
+            }
+        }
+
+    </div>
+
+</div>
