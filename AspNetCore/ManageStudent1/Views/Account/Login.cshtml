@@ -45,15 +45,15 @@
             }
             else
             {
-                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                <form class="mx-lg-auto w-50" method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
                     <div>
                         @foreach(var provider in Model.ExternalLogins)
                         {
-                            <button type="submit" class="btn btn-primary"
+                            <button type="submit" class="btn btn-primary w-100" 
                                     name="provider" value="@provider.Name"
                                     title="Login using your @provider.DisplayName account">
                                 @provider.DisplayName
-                            </button>
+                            </button><br /><br />
                         }
                     </div>
 

@@ -40,12 +40,21 @@ namespace ManageStudent1
 
             });
 
-            services.AddAuthentication().AddGoogle(options =>
-            {
-                options.ClientId = "464133127211-av4ifv26jeg03svq702oo9q7ljovn19q.apps.googleusercontent.com";
-                options.ClientSecret = "WWyew2jNIbE6Ju_fjHhYzjJc";
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "464133127211-av4ifv26jeg03svq702oo9q7ljovn19q.apps.googleusercontent.com";
+                    options.ClientSecret = "WWyew2jNIbE6Ju_fjHhYzjJc";
 
-            });
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = "122897433076924";
+                    options.AppSecret = "17c9b2f1b0da5cb0e1df2b3ef9417b44";
+
+                })
+                ;
+
 
             services.AddTransient<ICompanyRepository<Student>, SqlStudentRepository>(); // changemement addSingleton StudentRepository
         }
