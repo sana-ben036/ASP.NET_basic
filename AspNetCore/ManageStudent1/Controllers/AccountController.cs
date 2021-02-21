@@ -81,7 +81,7 @@ namespace ManageStudent1.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Register");
+            return RedirectToAction("index", "Student");
         }
 
         

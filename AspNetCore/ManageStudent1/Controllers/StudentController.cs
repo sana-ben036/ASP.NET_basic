@@ -35,6 +35,8 @@ namespace ManageStudent1.Controllers
 
         }
 
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             IEnumerable<Student> Students = _companyRepository.GetList();
@@ -43,7 +45,7 @@ namespace ManageStudent1.Controllers
             return View(Students);
         }
 
-        [AllowAnonymous]
+        
         public ActionResult List()
         {
             IEnumerable<Student> Students = _companyRepository.GetList();

@@ -53,6 +53,12 @@ namespace ManageStudent1
                     options.AppSecret = "17c9b2f1b0da5cb0e1df2b3ef9417b44";
 
                 })
+                .AddTwitter(options =>
+                {
+                    options.ConsumerKey = "122897433076924";
+                    options.ConsumerSecret= "17c9b2f1b0da5cb0e1df2b3ef9417b44";
+
+                })
                 ;
 
 
@@ -79,7 +85,7 @@ namespace ManageStudent1
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller=Student}/{action=List}/{id ?}");
+                routes.MapRoute("default", "{controller=Student}/{action=Index}/{id ?}");
             });
 
             app.UseRouting();
