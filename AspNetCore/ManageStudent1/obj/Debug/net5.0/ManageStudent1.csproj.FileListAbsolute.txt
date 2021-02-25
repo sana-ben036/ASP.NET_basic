@@ -84,9 +84,12 @@ C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Errors\NotFound.cshtml.g.cs
-C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Errors\NotFoundError.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Student\Index.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Twitter.dll
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\EditAccount.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Role\AddRole.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Role\EditRole.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Role\ListRoles.cshtml.g.cs

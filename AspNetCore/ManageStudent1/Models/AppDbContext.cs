@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ManageStudent1.Models
 {
-    public class AppDbContext : IdentityDbContext // changement de DbContext
+    public class AppDbContext : IdentityDbContext<AppUser> // changement de DbContext , ajout new type <AppUser> pour accept imigration apres modification sur IdentityUser properties 
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             :base(options)

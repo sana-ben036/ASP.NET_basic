@@ -32,5 +32,9 @@ namespace ManageStudent1.Models
         [Compare("Password",ErrorMessage ="Password and Confirm Password do not match")]
         [Display(Name ="Confirm Password")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Range(minimum:15, maximum:60)]
+        public int Age { get; set; }
     }
 }

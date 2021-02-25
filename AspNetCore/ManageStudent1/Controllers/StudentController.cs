@@ -28,7 +28,7 @@ namespace ManageStudent1.Controllers
             Student student = _companyRepository.Get(id );
             if (student is null)
             {
-                return View("NotFoundError", id);
+                return View("../Errors/NotFound", $"The Student with CIN : {id} cannot be found");
             }
 
             return View(student);
@@ -96,7 +96,7 @@ namespace ManageStudent1.Controllers
             Student student = _companyRepository.Get(id);
             if (student is null)
             {
-                return View("NotFoundError", id);
+                return View("../Errors/NotFound", $"The Student with  CIN : {id} cannot be found");
             }
             Student model = new Student()
             {

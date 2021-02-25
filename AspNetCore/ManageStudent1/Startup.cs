@@ -24,7 +24,7 @@ namespace ManageStudent1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("StudentDbConnect"))); // connectiondb
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options => //AppUser was IdentityUser
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;

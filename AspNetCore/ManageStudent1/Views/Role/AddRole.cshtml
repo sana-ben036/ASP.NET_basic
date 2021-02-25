@@ -1,0 +1,30 @@
+﻿@model Role
+
+@{
+
+    ViewBag.Title = "ManageStudent  | Add Role";
+
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="alert alert-info my-4 text-center"> Add New Role </p>
+        <form class="mx-lg-auto w-50" method="post">
+
+            <div class="form-group">
+                <label asp-for="RoleName"></label>
+                <input class="form-control" asp-for="RoleName">
+                <span asp-validation-for="RoleName" hidden class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Add Role</button>
+            </div>
+            <div class="text text-danger" asp-validation-summary="All"></div>
+
+        </form>
+
+    </div>
+</div>
+

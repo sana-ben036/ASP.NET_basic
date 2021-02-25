@@ -11,9 +11,9 @@ namespace ManageStudent1.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -53,10 +53,13 @@ namespace ManageStudent1.Controllers
         {
             if (ModelState.IsValid)
             {
-                string FullName = GeneratUserName(model.FirstName, model.LastName);
-                IdentityUser user = new IdentityUser
+
+                AppUser user = new AppUser
                 {
-                    UserName = model.Email ,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Age= model.Age,
+                    UserName = model.Email,
                     Email = model.Email
                 };
 
@@ -84,21 +87,22 @@ namespace ManageStudent1.Controllers
             return RedirectToAction("index", "Student");
         }
 
-        
+
+
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login(AccountLoginViewModel model, string ReturnUrl)
+        public async Task<IActionResult> Login(AccountLoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.Remember, false);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
                         
-                        return LocalRedirect(ReturnUrl);
+                        return LocalRedirect(returnUrl);
                     }
                     else
                     {
@@ -106,17 +110,71 @@ namespace ManageStudent1.Controllers
                     }
                     
                 }
-                ModelState.AddModelError("", "Login Invalid.");
+                ModelState.AddModelError(string.Empty, "Login Invalid!!");
 
 
             }
             return View(model);
         }
 
-        public string GeneratUserName(string FirstName, string LastName)
+
+        [HttpGet]
+        public async Task<IActionResult> EditAccount(string id)
         {
-            return FirstName.Trim().ToUpper() + "_" + LastName.Trim().ToLower();
+            if (!string.IsNullOrEmpty(id))
+            {
+                AppUser user = await userManager.FindByIdAsync(id);
+                if(user!= null)
+                {
+                    EditAccountViewModel model = new EditAccountViewModel()
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Age = user.Age,
+                        Id = user.Id,
+                        Password = user.PasswordHash,
+                        ConfirmPassword = user.PasswordHash
+                    };
+                    return View(model);
+                }
+            }
+            return RedirectToAction("index", "Student");   
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditAccount(EditAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Age = model.Age;
+
+                    var PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
+                    user.PasswordHash = PasswordHash;
+
+
+                    IdentityResult result = await userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("index", "Student");
+                    }
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+
+                }
+            }
+            return View(model);
+        }
+
+
+        
 
 
 
@@ -181,7 +239,7 @@ namespace ManageStudent1.Controllers
                     var user = await userManager.FindByEmailAsync(email);
                     if(user == null)
                     {
-                        user = new IdentityUser
+                        user = new AppUser
                         {
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email)
