@@ -12,8 +12,8 @@
         <p class="alert alert-info my-4 text-center"> Edit Role details </p>
 
         <form class="mx-lg-auto w-50" method="post">
-            <label asp-for="Id"></label>
-            <input class="form-control" disabled asp-for="Id">
+            <label asp-for="RoleId"></label>
+            <input class="form-control" disabled asp-for="RoleId">
 
             <div class="form-group">
                 <label asp-for="RoleName"></label>
@@ -29,12 +29,12 @@
                 @{
                     if (Model.Users.Count == 0)
                     {
-                        <div class="card" style="width: 15rem; margin:auto">
+                        <div class="card" style=" margin:auto">
                             <div class="card-body text-center">
                                 <h5 class="card-title">List Users</h5>
                                 <p class="card-text">Any Users</p>
                                 <div>
-                                    <a class="btn btn-sm btn-primary">Add User</a>
+                                    <a class="btn btn-sm btn-primary" asp-action="EditUsersRole" asp-route-RoleId="@Model.RoleId">Edit Users</a>
                                     <a class="btn btn-sm my-auto btn-secondary" asp-action="Listroles">Back to list</a>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
                                     }
                                 </p>
                                 <div>
-                                    <a class="btn btn-sm btn-primary">Add User</a>
-                                    <a class="btn btn-sm my-auto btn-secondary">Back to list</a>
+                                    <a class="btn btn-sm btn-primary" asp-action="EditUsersRole" asp-route-RoleId="@Model.RoleId">Edit Users</a>
+                                    <a class="btn btn-sm my-auto btn-secondary" asp-action="Listroles">Back to list</a>
                                 </div>
                             </div>
                         </div>

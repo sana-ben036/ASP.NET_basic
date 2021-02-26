@@ -25,6 +25,7 @@
     ".NETCoreApp,Version=v5.0": {
       "ManageStudent1/1.0.0": {
         "dependencies": {
+          "DryIoc.dll": "4.7.3",
           "Microsoft.AspNetCore.Authentication.Facebook": "5.0.3",
           "Microsoft.AspNetCore.Authentication.Google": "5.0.3",
           "Microsoft.AspNetCore.Authentication.Twitter": "5.0.3",
@@ -317,6 +318,20 @@
         },
         "compile": {
           "ManageStudent1.dll": {}
+        }
+      },
+      "DryIoc.dll/4.7.3": {
+        "dependencies": {
+          "System.Reflection.Emit.Lightweight": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DryIoc.dll": {
+            "assemblyVersion": "4.7.3.0",
+            "fileVersion": "4.7.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/DryIoc.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3159,6 +3174,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DryIoc.dll/4.7.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XDzvVJHy2ipbaEmYXP35/nPfOgU8zwlVxWV5l5BBTXinfFh0OHjhwQpPjkITkV5v4tAIq8m8pGHrLx1w3IotJg==",
+      "path": "dryioc.dll/4.7.3",
+      "hashPath": "dryioc.dll.4.7.3.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

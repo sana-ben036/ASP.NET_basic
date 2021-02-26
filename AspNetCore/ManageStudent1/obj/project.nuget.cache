@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "lDMPYfEPhU/sFBuYiTGGhToDbynHNCWw9+rp/E8d9ja7fyAGn2MqfemzthaXMW84C+xe0l4y54Y+Vo5l1qteUQ==",
+  "dgSpecHash": "gbfn0fFcKVmPI+33UH6nTgtmkbR0ymzsG5m6kPOlrQMDalOyTD/z8hlsGdNnh98DUFiqnFW6W1A0Xexp1LwAiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\youcode\\source\\repos\\sana-ben036\\ASP.NET_basic\\AspNetCore\\ManageStudent1\\ManageStudent1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\youcode\\.nuget\\packages\\dryioc.dll\\4.7.3\\dryioc.dll.4.7.3.nupkg.sha512",
     "C:\\Users\\youcode\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\youcode\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.3\\microsoft.aspnetcore.authentication.facebook.5.0.3.nupkg.sha512",
     "C:\\Users\\youcode\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.3\\microsoft.aspnetcore.authentication.google.5.0.3.nupkg.sha512",

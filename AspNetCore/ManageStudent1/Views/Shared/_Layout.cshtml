@@ -76,7 +76,7 @@
                         string FullName = null;
                         AppUser user = await userManager.FindByEmailAsync(User.Identity.Name);
 
-                        if (user != null & !string.IsNullOrEmpty(user.FirstName) & !string.IsNullOrEmpty(user.LastName))
+                        @if (user != null & !string.IsNullOrEmpty(user.FirstName) & !string.IsNullOrEmpty(user.LastName))
                         {
                             FullName = user.FirstName.Trim().ToUpper() + " " + user.LastName.Trim().ToLower();
 
