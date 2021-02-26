@@ -63,9 +63,19 @@
                     <li class="nav-item ">
                         <a class="nav-link" asp-action="List" asp-controller="Student">Manage Student</a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" asp-action="AddStudent" asp-controller="Student">Add Student</a>
-                    </li>
+                    
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Manage Roles</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-action="ListRoles" asp-controller="Role">Roles</a>
+                                <a class="dropdown-item" asp-action="Users" asp-controller="Role">Users</a>
+                            </div>
+
+                        </li>
+
+                    }
 
 
                 </ul>

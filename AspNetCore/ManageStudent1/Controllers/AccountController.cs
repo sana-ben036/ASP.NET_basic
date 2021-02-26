@@ -268,7 +268,17 @@ namespace ManageStudent1.Controllers
 
 
 
-
+        [HttpGet]
+        public IActionResult AccessDenied(string returnUrl)
+        {
+            ViewBag.Message = "You don't have permission to access this resource";
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                ViewBag.Message += "\nPath : " + returnUrl;
+            }
+            
+            return View();
+        }
 
 
 
