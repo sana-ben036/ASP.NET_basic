@@ -10,27 +10,29 @@
             <div class="card-header">
                 <span>Add or Remove Users from this Role</span>Add or Remove Users from this Role
                 <hr />
-                <input disabled value="@ViewBag.RoleId" class="form-control" />
+                <input disabled value="ID : @ViewBag.RoleId" class="form-control" />
             </div>
             <div class="card-body">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     var uniqueName = "User" + i;
-                <div class="form-check">
-                    <input hidden asp-for="@Model[i].UserId" />
-                    <input hidden asp-for="@Model[i].UserName" />
-                    <input asp-for="@Model[i].IsSelected" name="@uniqueName" class="form-check-input" />
-                    <label for="@uniqueName" class="form-check-label" asp-for="@Model[i].IsSelected">@Model[i].UserName.ToUpper()</label>
-                </div>
+                    <div class="form-check m-1">
+                        <input hidden asp-for="@Model[i].UserId" />
+                        <input hidden asp-for="@Model[i].UserName" />
+                        <input asp-for="@Model[i].IsSelected" id="@uniqueName" class="form-check-input" />
+                        <label for="@uniqueName" class="form-check-label">@Model[i].UserName.ToUpper()</label>
+                    </div>
 
                 }
 
             </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="card-footer">
-                <a asp-action="EditRole" asp-route-id="@ViewBag.RoleId" class="btn btn-primary mx-2">Back to Role</a>
                 <button type="submit" class="btn btn-success">Save</button>
-                <br />
-                <div asp-validation-summary="All" class="text-danger"></div>
+                <a asp-action="EditRole" asp-route-id="@ViewBag.RoleId" class="btn btn-dark mx-2">Back to Role</a>
+
+
+
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 ﻿using ImTools;
 using ManageStudent1.Models;
 using ManageStudent1.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +12,14 @@ using System.Threading.Tasks;
 
 namespace ManageStudent1.Controllers
 {
+    [Authorize (Roles = "Admin,IT")]
     public class RoleController : Controller
     {
-        private RoleManager<IdentityRole> roleManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<AppUser> userManager;
 
         public RoleController(RoleManager<IdentityRole> roleManager,
-                                        UserManager<AppUser> userManager)
+                              UserManager<AppUser> userManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
@@ -43,6 +45,7 @@ namespace ManageStudent1.Controllers
                 };
 
                 IdentityResult result = await this.roleManager.CreateAsync(role);
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ListRoles");
@@ -72,7 +75,7 @@ namespace ManageStudent1.Controllers
             {
                 return View("../Errors/NotFound", "Please add the role Id in URL");
             }
-            IdentityRole role = await this.roleManager.FindByIdAsync(id);
+            IdentityRole role = await roleManager.FindByIdAsync(id);
             if(role is null)
             {
                 return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
@@ -80,7 +83,7 @@ namespace ManageStudent1.Controllers
 
             EditRoleViewModel model = new EditRoleViewModel()
             {
-                RoleId = role.Id,
+                Id = role.Id,
                 RoleName = role.Name,
                 Users = new List<string>()
             };
@@ -89,7 +92,7 @@ namespace ManageStudent1.Controllers
             {
                 if( await userManager.IsInRoleAsync(user, role.Name))
                 {
-                    model.Users.Add(user.Email);
+                    model.Users.Add(user.UserName);
                 }
             } 
             return View(model);
@@ -102,7 +105,7 @@ namespace ManageStudent1.Controllers
             {
                 return View("../Errors/NotFound", "Please add the role Id in URL");
             }
-            IdentityRole role = await this.roleManager.FindByIdAsync(id);
+            IdentityRole role = await roleManager.FindByIdAsync(id);
             if (role != null)
             {
                 await roleManager.DeleteAsync(role);
@@ -118,10 +121,10 @@ namespace ManageStudent1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var role = await this.roleManager.FindByIdAsync(model.RoleId);
+                var role = await roleManager.FindByIdAsync(model.Id);
                 if (role is null)
                 {
-                    return View("../Errors/NotFound", $"The role Id : {model.RoleId} cannot be found");
+                    return View("../Errors/NotFound", $"The role Id : {model.Id} cannot be found");
                 }
                 role.Name = model.RoleName;
 
@@ -150,13 +153,14 @@ namespace ManageStudent1.Controllers
                 return View("../Errors/NotFound", $"The role must be exist and not empty in Url");
 
             }
-            var role = await this.roleManager.FindByIdAsync(roleId);
+            var role = await roleManager.FindByIdAsync(roleId);
             if (role is null)
             {
                 return View("../Errors/NotFound", $"The role Id : {role.Id} cannot be found");
             }
 
             var Models = new List<EditUsersRoleViewModel>();
+
             foreach (var user in await userManager.Users.ToListAsync())
             {
                 EditUsersRoleViewModel model = new EditUsersRoleViewModel()
@@ -188,14 +192,14 @@ namespace ManageStudent1.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> EditUsersRole(List<EditUsersRoleViewModel> model , string roleId)
+        public async Task<IActionResult> EditUsersRole(List<EditUsersRoleViewModel> model, string roleId)
         {
             if (string.IsNullOrEmpty(roleId))
             {
                 return View("../Errors/NotFound", $"The role must be exist and not empty in Url");
 
             }
-            var role = await roleManager.FindByIdAsync(roleId);
+            var role = await this.roleManager.FindByIdAsync(roleId);
             if (role is null)
             {
                 return View("../Errors/NotFound", $"The role Id : {role.Id} cannot be found");
@@ -203,30 +207,20 @@ namespace ManageStudent1.Controllers
 
             // role if deja affectté et in model is select il faut le supprimer , ou l'affecté si il est selecté au model mais non affecté before
 
-
             IdentityResult result = null;
-            for (int i = 0; i < model.Count; i++) 
-            {
-                var user = await userManager.FindByIdAsync(model[i].UserId);
 
-                if (model[i].IsSelected && !(await userManager.IsInRoleAsync(user, role.Name)) )
+            for (int i = 0; i < model.Count; i++)
+            {
+                AppUser user = await userManager.FindByIdAsync(model[i].UserId);
+
+                if (await userManager.IsInRoleAsync(user, role.Name) && !model[i].IsSelected)
+                {
+                    result = await userManager.RemoveFromRoleAsync(user, role.Name);
+                }
+                else if (!(await userManager.IsInRoleAsync(user, role.Name)) && model[i].IsSelected)
                 {
                     result = await userManager.AddToRoleAsync(user, role.Name);
                 }
-                else if (!model[i].IsSelected && (await userManager.IsInRoleAsync(user,role.Name)) )
-                {
-                     result = await userManager.RemoveFromRoleAsync(user, role.Name);
-                }
-                
-                else
-                {
-                    continue;
-                }
-
-               
-
-           
-
             }
 
             if (!result.Succeeded)
@@ -236,14 +230,9 @@ namespace ManageStudent1.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
 
-
-                //if (i < (model.Count - 1))
-                //    continue;
-                //else
-                //    return RedirectToAction("EditRole", new { Id = roleId });
             }
+            return RedirectToAction("EditRole" , new { id = roleId });
 
-            return RedirectToAction("EditRole", new { Id = roleId });
         }
 
 

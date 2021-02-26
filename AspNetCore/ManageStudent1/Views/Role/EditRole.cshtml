@@ -12,8 +12,8 @@
         <p class="alert alert-info my-4 text-center"> Edit Role details </p>
 
         <form class="mx-lg-auto w-50" method="post">
-            <label asp-for="RoleId"></label>
-            <input class="form-control" disabled asp-for="RoleId">
+            <label asp-for="Id"></label>
+            <input class="form-control" disabled asp-for="Id">
 
             <div class="form-group">
                 <label asp-for="RoleName"></label>
@@ -26,46 +26,31 @@
             </div>
 
             <div>
-                @{
-                    if (Model.Users.Count == 0)
-                    {
-                        <div class="card" style=" margin:auto">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">List Users</h5>
-                                <p class="card-text">Any Users</p>
-                                <div>
-                                    <a class="btn btn-sm btn-primary" asp-action="EditUsersRole" asp-route-RoleId="@Model.RoleId">Edit Users</a>
-                                    <a class="btn btn-sm my-auto btn-secondary" asp-action="Listroles">Back to list</a>
-                                </div>
-                            </div>
+                <div class="card" style=" margin:auto">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">List Users</h5>
+
+                        @if (Model.Users.Count == 0)
+                         {
+                            <p class="card-text">Any Users</p>
+                         }
+                        else
+                        {
+                            <p class="card-text">
+                                @foreach (string user in Model.Users)
+                                {
+                                    @user <br />
+                                }
+                            </p>
+                        }
+                        <div>
+                            <a class="btn btn-sm btn-primary" asp-action="EditUsersRole" asp-route-RoleId="@Model.Id">Edit Users</a>
+                            <a class="btn btn-sm my-auto btn-secondary" asp-action="Listroles">Back to list</a>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="card" style="width: 15rem; margin:auto">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">List Users</h5>
-                                <p class="card-text">
-                                    @foreach (string user in Model.Users)
-                                    {
-                                        @user <br />
-                                    }
-                                </p>
-                                <div>
-                                    <a class="btn btn-sm btn-primary" asp-action="EditUsersRole" asp-route-RoleId="@Model.RoleId">Edit Users</a>
-                                    <a class="btn btn-sm my-auto btn-secondary" asp-action="Listroles">Back to list</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
-                }
-
-
+                    </div>
+                </div>
             </div>
             <div class="text text-danger" asp-validation-summary="All"></div>
-
-
         </form>
 
     </div>

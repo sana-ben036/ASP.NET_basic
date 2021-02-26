@@ -8,10 +8,13 @@ namespace ManageStudent1.Models.ViewModels
 {
     public class EditRoleViewModel 
     {
-        public string RoleId { get; set; }
+
+        
+        [Display(Name = "ID:")]
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "The role name field is required !")]
-        [Display(Name = "Enter The Name")]
+        [Display(Name = "Enter The Name:")]
         public string RoleName { get; set; }
 
         public List<string> Users { get; set; }

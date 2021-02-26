@@ -63,13 +63,13 @@ namespace ManageStudent1.Controllers
                     Email = model.Email
                 };
 
-                 var result = await userManager.CreateAsync(user, model.Password);
+                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("List", "Student");
                 }
-                foreach(var error in result.Errors)
+                foreach(IdentityError error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
