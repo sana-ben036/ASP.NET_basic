@@ -66,8 +66,13 @@ namespace ManageStudent1.Controllers
                  IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (User.IsInRole("Admin") && signInManager.IsSignedIn(User)) // ce code est ajouté pour eviter login auto d'un nouveau user cree par un admin 
+                    {
+                        return RedirectToAction(nameof(ListUsers));
+                    }
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("List", "Student");
+
+                    return RedirectToAction("index", "Student");
                 }
                 foreach(IdentityError error in result.Errors)
                 {
@@ -280,6 +285,14 @@ namespace ManageStudent1.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+
+            var users = userManager.Users.Where(u => u.Email != User.Identity.Name);
+            return View(users);
+        }
 
 
 

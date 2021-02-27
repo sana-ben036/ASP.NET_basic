@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Student>
 
-@{ 
-   // Layout = "~/Views/Shared/_Layout.cshtml"; // absolut path need extension 
+@{
+    // Layout = "~/Views/Shared/_Layout.cshtml"; // absolut path need extension
     ViewBag.Title = "ManageStudent  | List";
 }
 
 <p class="alert alert-info my-4 text-center"> List of students </p>
-<table class="table table-hover text-center" >
-    <thead>
+<table  id="StudentsTable" class="table table-hover text-center">
+    <thead class="alert-dark">
         <tr>
             <th scope="col">Cin</th>
             <th scope="col">IsActive</th>
@@ -37,7 +37,7 @@
 
             }
         }
-        
+
 
     </tbody>
 </table>
@@ -45,4 +45,16 @@
     <a class="btn btn-sm my-auto btn-success" asp-action="AddStudent">Add Student</a>
     <a class="btn btn-sm my-auto btn-secondary" asp-action="index">Back to Home</a>
 </div>
+
+@section DTListStudents{
+    <script>
+        $(document).ready(function () {
+            $('#StudentsTable').dataTable();
+        });
+
+
+    </script>
+
+
+}
 

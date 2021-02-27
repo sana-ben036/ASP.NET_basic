@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ManageStudent1.Controllers
 {
-    [Authorize]
+    [Authorize (Roles = "Staf,IT,Admin")]
     public class StudentController : Controller
     {
         

@@ -96,3 +96,4 @@ C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Role\EditUsersRole.cshtml.g.cs
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\bin\Debug\net5.0\DryIoc.dll
 C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\AccessDenied.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\ASP.NET_basic\AspNetCore\ManageStudent1\obj\Debug\net5.0\Razor\Views\Account\ListUsers.cshtml.g.cs
