@@ -295,6 +295,88 @@ namespace ManageStudent1.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+            if (user is null)
+            {
+
+                return View("../Errors/NotFound", $"The user Id : {id} cannot be found");
+            }
+
+            var userRoles = await userManager.GetRolesAsync(user);
+            var userClaims = await userManager.GetClaimsAsync(user);
+
+            AccountEditUserViewModel model = new AccountEditUserViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Age = user.Age,
+                Id = user.Id,
+                Email = user.Email,
+                Roles = userRoles,
+                Claims = userClaims.Select(c => c.Value).ToList()
+            };
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(AccountEditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByIdAsync(model.Id);
+                if (user is null)
+                {
+
+                    return View("../Errors/NotFound", $"The user Id : {model.Id} cannot be found");
+                }
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Age = model.Age;
+                user.Email = model.Email;
+
+                IdentityResult result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(ListUsers));
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                await SetClaimsAndRoles(model.Id, model);
+
+            }
+            else
+            {
+                await SetClaimsAndRoles(model.Id, model);
+
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> SetClaimsAndRoles(string UserId, AccountEditUserViewModel model)
+        {
+            AppUser user = await userManager.FindByIdAsync(model.Id);
+            if (user is null)
+            {
+
+                return View("../Errors/NotFound", $"The user Id : {model.Id} cannot be found");
+            }
+
+            var userRoles = await userManager.GetRolesAsync(user);
+            var userClaims = await userManager.GetClaimsAsync(user);
+
+            model.Roles = userRoles;
+            model.Claims = userClaims.Select(c => c.Value).ToList();
+
+            return View("EditUser",model);
+        }
 
 
 
