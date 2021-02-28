@@ -380,9 +380,32 @@ namespace ManageStudent1.Controllers
 
 
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+            if (user is null)
+            {
+
+                return View("../Errors/NotFound", $"The user Id : {id} cannot be found");
+            }
+
+            IdentityResult result = await userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                
+            }
+            return RedirectToAction(nameof(ListUsers));
+        }
 
 
 
 
-    }
+
+        }
 }

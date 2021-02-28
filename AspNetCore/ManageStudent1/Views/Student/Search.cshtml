@@ -4,7 +4,10 @@
     ViewBag.Title = "ManageStudent | Search";
 }
 
-<p class="alert alert-info my-4 text-center"> Student Info </p>
+<div class="my-5 text-left">
+    <h2> Student Info </h2>
+    <hr />
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -26,10 +29,18 @@
             <td>@Model.Adresse</td>
             <td>@Model.Filiere</td>
             <td>
-                <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Edit</a> |
-                <a asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN" onclick="return confirm('Are you sure ??')">Delete</a>
+                <form method="post" asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN">
+                    <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Update</a>
+                    <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                </form>
+
             </td>
         </tr>
 
     </tbody>
+
 </table>
+
+<div class="my-5 text-center">
+    <a asp-action="index" asp-controller="student">Back to Home</a>
+</div>

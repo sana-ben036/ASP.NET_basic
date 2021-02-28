@@ -140,9 +140,15 @@ namespace ManageStudent1.Controllers
         }
 
 
+        [HttpPost]
         public ActionResult DeleteStudent(string id)
         {
             Student student = _companyRepository.Get(id);
+            if (student is null)
+            {
+                return View("../Errors/NotFound", $"The Student with  CIN : {id} cannot be found");
+            }
+
             _companyRepository.Delete(student.CIN);
 
             return RedirectToAction("List");

@@ -5,7 +5,11 @@
     ViewBag.Title = "ManageStudent  | List";
 }
 
-<p class="alert alert-info my-4 text-center"> List of students </p>
+<div class="my-5 text-left">
+    <h2> List of Students </h2>
+    <hr />
+</div>
+
 <table  id="StudentsTable" class="table table-hover text-center">
     <thead class="alert-dark">
         <tr>
@@ -30,8 +34,13 @@
                     <td>@student.Adresse</td>
                     <td>@student.Filiere</td>
                     <td>
-                        <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@student.CIN">Edit</a> |
-                        <a asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@student.CIN" onclick="return confirm('Are you sure ??')">Delete</a>
+
+                        <form method="post" asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@student.CIN">
+                            <a class="btn btn-warning text-white btn-sm" asp-action="EditStudent" asp-controller="Student" asp-route-id="@student.CIN">Update</a> 
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                        </form>
+
+                        
                     </td>
                 </tr>
 
@@ -41,9 +50,10 @@
 
     </tbody>
 </table>
+
 <div class="my-5 text-center">
-    <a class="btn btn-sm my-auto btn-success" asp-action="AddStudent">Add Student</a>
-    <a class="btn btn-sm my-auto btn-secondary" asp-action="index">Back to Home</a>
+    <a  asp-action="AddStudent">Add Student</a> |
+    <a  asp-action="index">Back to Home</a>
 </div>
 
 @section DTListStudents{

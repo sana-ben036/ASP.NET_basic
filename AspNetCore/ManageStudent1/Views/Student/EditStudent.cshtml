@@ -6,9 +6,12 @@
 }
 
 
-<p class="alert alert-info my-4 text-center"> Edit Info Student </p>
+<div class="my-5 text-center">
+    <h2> Edit student details</h2>
+    <hr />
+</div>
 
-<form class="mx-lg-auto w-50" asp-action="EditStudent" asp-controller="Student" method="post">
+<form class="mx-lg-auto my-5 w-50" asp-action="EditStudent" asp-controller="Student" method="post">
     <input hidden asp-for="CIN">
     <div class="form-group">
         <label asp-for="Prenom"></label>
@@ -37,5 +40,5 @@
         <input type="checkbox" class="form-check-input" asp-for="IsActive">
         <label class="form-check-label" asp-for="IsActive"></label>
     </div>
-    <button type="submit" class="btn btn-primary">Edit Student</button>
+    <button type="submit" class="btn btn-success">Edit Student</button>
 </form>

@@ -5,7 +5,10 @@
     ViewBag.Title = "ManageStudent  | Users";
 }
 
-<p class="alert alert-info my-4 text-center"> List of Users </p>
+<div class="my-5 text-left">
+    <h2 > List of Users </h2>
+    <hr />
+</div>
 
 <table id="UsersTable" class="table table-hover text-center">
     <thead class="alert-dark">
@@ -29,8 +32,11 @@
                 <td>@user.Email</td>
 
                 <td>
-                    <a asp-action="EditUser" asp-controller="Account" asp-route-id="@user.Id">Edit</a> |
-                    <a asp-action="DeleteUser" asp-controller="Account" asp-route-id="@user.Id" onclick="return confirm('Are you sure ??')">Delete</a>
+                    <form method="post" asp-action="DeleteUser" asp-controller="Account" asp-route-id="@user.Id">
+                        <a class="btn btn-warning text-white btn-sm"  asp-action="EditUser" asp-controller="Account" asp-route-id="@user.Id">Update</a> 
+                        <button  type="submit" class="btn btn-secondary btn-sm"  onclick="return confirm('Are you sure ??')">Delete</button>
+                    </form>
+                    
                 </td>
             </tr>
             counter++;
@@ -41,12 +47,12 @@
     </tbody>
 </table>
 
-
-
 <div class="my-5 text-center">
-    <a class="btn btn-sm my-auto btn-success" asp-action="Register">Add User</a>
-    <a class="btn btn-sm my-auto btn-secondary" asp-action="index" asp-controller="student">Back to Home</a>
+    <a  asp-action="Register">Add User</a> |
+    <a  asp-action="index" asp-controller="student">Back to Home</a>
 </div>
+
+<div class=" my-3 text-danger" asp-validation-summary="All"></div>
 
 @section DTListUsers{ 
         <script>

@@ -5,7 +5,9 @@
     ViewBag.Title = "ManageStudent  | Roles";
 }
 
-<p class="alert alert-info my-4 text-center"> List of Roles </p>
+<div class="my-5 text-left">
+    <h2> List of Roles </h2>
+</div>
 
 
 @if (Model.Any())
@@ -27,8 +29,11 @@
                         <td>@role.Name</td>
 
                         <td>
-                            <a asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id">Edit</a> |
-                            <a asp-action="DeleteRole" asp-controller="Role" asp-route-id="@role.Id" onclick="return confirm('Are you sure ??')">Delete</a>
+                            <form method="post" asp-action="DeleteRole" asp-controller="Role" asp-route-id="@role.Id">
+                                <a class="btn btn-warning text-white btn-sm" asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id">Update</a> 
+                                <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                            </form>
+
                         </td>
                     </tr>
 
@@ -58,8 +63,8 @@ else
 }
 
 <div class="my-5 text-center">
-    <a class="btn btn-sm my-auto btn-success" asp-action="AddRole">Add Role</a>
-    <a class="btn btn-sm my-auto btn-secondary" asp-action="index" asp-controller="student">Back to Home</a>
+    <a  asp-action="AddRole">Add Role</a> |
+    <a  asp-action="index" asp-controller="student">Back to Home</a>
 </div>
 
 
