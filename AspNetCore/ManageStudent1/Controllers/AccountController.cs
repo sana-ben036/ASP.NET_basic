@@ -379,6 +379,11 @@ namespace ManageStudent1.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult DeleteUser()
+        {
+            return RedirectToAction("ListUsers");
+        }
 
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)

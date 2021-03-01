@@ -98,23 +98,7 @@ namespace ManageStudent1.Controllers
             return View(model);
         }
 
-
-        public async Task<IActionResult> DeleteRole(string id)
-        {
-            if (id is null)
-            {
-                return View("../Errors/NotFound", "Please add the role Id in URL");
-            }
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            if (role != null)
-            {
-                await roleManager.DeleteAsync(role);
-            }
-
-            return RedirectToAction("ListRoles");
-
-
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
@@ -141,6 +125,81 @@ namespace ManageStudent1.Controllers
                 }
             }
             return View(model);
+
+        }
+
+
+
+        [HttpGet]
+        public IActionResult DeleteRole()
+        {
+            return RedirectToAction("ListRoles");
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+
+            if (!(role is null))
+            {
+                IdentityResult result = await roleManager.DeleteAsync(role);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            else
+            {
+                return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
+
+            }
+            return RedirectToAction("ListRoles");
+
+            //try
+            //{
+            //    if (!(role is null))
+            //    {
+            //        IdentityResult result = await roleManager.DeleteAsync(role);
+
+            //        if (!result.Succeeded)
+            //        {
+            //            foreach (var error in result.Errors)
+            //            {
+            //                ModelState.AddModelError("", error.Description);
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
+
+            //    }
+            //    return RedirectToAction("ListRoles");
+
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    this.logger.logError(ex.Message);
+            //    ViewBag.Error = "Delete Role";
+            //    string errorMessage = role.Name + "role is in use , so this role cannot be deleted as there users in this role." +
+            //        "if you want to delete this role, " +
+            //        "please remove the users from the role and then try to delete ";
+            //    return View("Error", errorMessage);
+
+            //}
+
+
+
+
+
 
         }
 
