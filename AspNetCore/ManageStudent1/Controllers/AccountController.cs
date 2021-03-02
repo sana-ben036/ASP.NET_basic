@@ -111,7 +111,7 @@ namespace ManageStudent1.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("List", "Student");
+                        return RedirectToAction("index", "Student");
                     }
                     
                 }
@@ -136,6 +136,7 @@ namespace ManageStudent1.Controllers
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         Age = user.Age,
+                        CIN = user.CIN,
                         Id = user.Id,
                         Password = user.PasswordHash,
                         ConfirmPassword = user.PasswordHash
@@ -158,6 +159,7 @@ namespace ManageStudent1.Controllers
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
                     user.Age = model.Age;
+                    user.CIN = model.CIN;
 
                     var PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
                     user.PasswordHash = PasswordHash;
@@ -313,6 +315,7 @@ namespace ManageStudent1.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Age = user.Age,
+                CIN = user.CIN,
                 Id = user.Id,
                 Email = user.Email,
                 Roles = userRoles,
@@ -333,10 +336,13 @@ namespace ManageStudent1.Controllers
 
                     return View("../Errors/NotFound", $"The user Id : {model.Id} cannot be found");
                 }
+
+                user.CIN = model.CIN;
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Age = model.Age;
                 user.Email = model.Email;
+                
 
                 IdentityResult result = await userManager.UpdateAsync(user);
 

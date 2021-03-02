@@ -2,17 +2,25 @@
 
 @{
 
-    ViewBag.Title = "ManageStudent  | Edit Account";
+    ViewBag.Title = "ManageStudent | Edit Account";
 
 }
 
+<div class="my-5 text-left">
+    <h2> Edit Account Details </h2>
+    <hr />
+</div>
 
-<p class="alert alert-info my-4 text-center"> Edit Account Details </p>
 
 <form class="mx-lg-auto w-50" asp-action="EditAccount" asp-controller="Account" method="post">
 
     <input class="form-control" asp-for="Id" hidden>
 
+    <div class="form-group">
+        <label asp-for="CIN"></label>
+        <input class="form-control" asp-for="CIN">
+        <span asp-validation-for="CIN" class="small text-danger"></span>
+    </div>
     <div class="form-group">
         <label asp-for="FirstName"></label>
         <input class="form-control" asp-for="FirstName">

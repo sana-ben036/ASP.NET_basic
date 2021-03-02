@@ -20,6 +20,8 @@ namespace ManageStudent1.Models
         public string Prenom { get; set; }
         [Required]
         public string Nom { get; set; }
+
+        [Required]
         public string Adresse { get; set; }
         [Required]
         public Filiere? Filiere { get; set; } //  public string Filiere { get; set; } 

@@ -1,7 +1,7 @@
 ﻿@model Student
 
 @{
-    ViewBag.Title = "ManageStudent | Search";
+    ViewBag.Title = "ManageStudent | Student Profil";
 }
 
 <div class="my-5 text-left">
@@ -29,10 +29,7 @@
             <td>@Model.Adresse</td>
             <td>@Model.Filiere</td>
             <td>
-                <form method="post" asp-action="DeleteStudent" asp-controller="Student" asp-route-id="@Model.CIN">
-                    <a asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Update</a>
-                    <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
-                </form>
+                <a class="btn btn-warning btn-sm" asp-action="EditStudent" asp-controller="Student" asp-route-id="@Model.CIN">Update</a>
 
             </td>
         </tr>

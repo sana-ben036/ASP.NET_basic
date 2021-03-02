@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ManageStudent1.Controllers
 {
-    [Authorize (Roles = "Staf,IT,Admin")]
+    [Authorize (Roles = "Staf,IT,Admin,Student")]
     public class StudentController : Controller
     {
         
@@ -19,11 +19,13 @@ namespace ManageStudent1.Controllers
            
         }
 
+
+        
         public ActionResult Search(string id)
         {
             if(id is null)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("index");
             }
             Student student = _companyRepository.Get(id );
             if (student is null)

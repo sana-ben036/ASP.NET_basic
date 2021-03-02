@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace ManageStudent1.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<AppUser> userManager;
-
+        private readonly ILogger<RoleController> logger;
         public RoleController(RoleManager<IdentityRole> roleManager,
-                              UserManager<AppUser> userManager)
+                              UserManager<AppUser> userManager,
+                              ILogger<RoleController> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.logger = logger;
         }
 
         // actions
@@ -144,57 +147,57 @@ namespace ManageStudent1.Controllers
             
             IdentityRole role = await roleManager.FindByIdAsync(id);
 
-            if (!(role is null))
-            {
-                IdentityResult result = await roleManager.DeleteAsync(role);
-
-                if (!result.Succeeded)
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                }
-            }
-            else
-            {
-                return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
-
-            }
-            return RedirectToAction("ListRoles");
-
-            //try
+            //if (!(role is null))
             //{
-            //    if (!(role is null))
-            //    {
-            //        IdentityResult result = await roleManager.DeleteAsync(role);
+            //    IdentityResult result = await roleManager.DeleteAsync(role);
 
-            //        if (!result.Succeeded)
+            //    if (!result.Succeeded)
+            //    {
+            //        foreach (var error in result.Errors)
             //        {
-            //            foreach (var error in result.Errors)
-            //            {
-            //                ModelState.AddModelError("", error.Description);
-            //            }
+            //            ModelState.AddModelError("", error.Description);
             //        }
             //    }
-            //    else
-            //    {
-            //        return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
-
-            //    }
-            //    return RedirectToAction("ListRoles");
-
             //}
-            //catch (DbUpdateException ex)
+            //else
             //{
-            //    this.logger.logError(ex.Message);
-            //    ViewBag.Error = "Delete Role";
-            //    string errorMessage = role.Name + "role is in use , so this role cannot be deleted as there users in this role." +
-            //        "if you want to delete this role, " +
-            //        "please remove the users from the role and then try to delete ";
-            //    return View("Error", errorMessage);
+            //    return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
 
             //}
+            //return RedirectToAction("ListRoles");
+
+            try
+            {
+                if (!(role is null))
+                {
+                    IdentityResult result = await roleManager.DeleteAsync(role);
+
+                    if (!result.Succeeded)
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                    }
+                }
+                else
+                {
+                    return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
+
+                }
+                return RedirectToAction("ListRoles");
+
+            }
+            catch (DbUpdateException ex)
+            {
+                this.logger.LogError(ex.Message);
+                ViewBag.Error = "Delete Role";
+                string errorMessage = role.Name + " role is in use , so this role cannot be deleted as there users in this role." +
+                    "if you want to delete this role, " +
+                    "please remove the users from the role and then try to delete ";
+                return View("Error", errorMessage);
+
+            }
 
 
 

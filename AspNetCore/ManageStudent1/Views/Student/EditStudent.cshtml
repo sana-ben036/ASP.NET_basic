@@ -2,7 +2,7 @@
 
 @{
 
-    ViewBag.Title = "ManageStudent  | Edit";
+    ViewBag.Title = "ManageStudent | Edit Student";
 }
 
 
@@ -37,8 +37,18 @@
         <span asp-validation-for="Filiere" class="small text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="checkbox" class="form-check-input" asp-for="IsActive">
-        <label class="form-check-label" asp-for="IsActive"></label>
+        @if (User.IsInRole("Student"))
+        {
+            <input type="checkbox" disabled class="form-check-input" asp-for="IsActive">
+            <label class="form-check-label"  asp-for="IsActive"></label>
+        }
+        else
+        {
+            <input type="checkbox" class="form-check-input" asp-for="IsActive">
+            <label class="form-check-label" asp-for="IsActive"></label>
+
+        }
+
     </div>
     <button type="submit" class="btn btn-success">Edit Student</button>
 </form>

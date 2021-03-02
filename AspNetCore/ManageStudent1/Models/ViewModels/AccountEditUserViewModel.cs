@@ -20,6 +20,10 @@ namespace ManageStudent1.Models.ViewModels
 
         public string Id { get; set; }
 
+        [Required]
+        [MinLength(5, ErrorMessage = " CIN doit contenir au minimum 5 caractéres")]
+        [MaxLength(8)]
+        public string CIN { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
@@ -35,6 +39,8 @@ namespace ManageStudent1.Models.ViewModels
         public string Email { get; set; }
 
         public int Age { get; set; }
+
+        
 
 
         public IList<string> Roles { get; set; }
